@@ -1,0 +1,139 @@
+/* style.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #d3d3d3; /* Background color changed to grey */
+    display: flex;
+    flex-direction: column;
+    min-height: 200vh;
+}
+
+
+.navbar {
+    margin-bottom: 30px;
+}
+
+.container {
+    margin-top: 50px;
+    margin-bottom: 80px; /* Tambahkan margin bawah untuk menghindari overlap dengan footer */
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+h1 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+table {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.btn {
+    margin-right: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px; /* Membuat sudut tombol melengkung */
+}
+
+.btn-update {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    transition: background-color 0.3s ease;
+    color: #fff;
+}
+
+.btn-update:hover {
+    background-color: #0056b3;
+}
+
+.btn-shbooking {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    transition: background-color 0.3s ease;
+    color: #fff;
+}
+
+.btn-shbooking:hover {
+    background-color: #0056b3;
+}
+
+.btn-paym {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    transition: background-color 0.3s ease;
+    color: #fff;
+}
+
+.btn-paym:hover {
+    background-color: #0056b3;
+}
+
+/* Additional button styles */
+.btn-view {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-view {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease;
+}
+
+.btn-view:hover {
+    background-color: #0054ae;
+}
+
+.btn-edit {
+    background-color: #ffc107;
+    color: #f6f6f6;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-pay {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-new {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+.btn-data-pay {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+.btn:hover {
+    opacity: 0.8; /* Menambahkan efek hover */
+}
+ 
+/*home*/
+.container-home {
+     padding: 20px; 
+     text-align: center; 
+}
+
+.nav-link:hover, 
+.nav-link:focus, 
+.nav-link.active {
+     color: #ffffff; 
+}

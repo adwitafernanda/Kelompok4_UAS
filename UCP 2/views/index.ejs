@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking List</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/css/footer.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="/assets/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Booking Futsal Logo">
+            Futsal Jaya
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/bookings">Booking List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bookings/new">Add Booking</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="text-center">Booking List</h1>
+        <table class="table table-bordered table-hover mt-3">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Duration</th>
+                    <th>totalharga (IDR)</th> <!-- Added totalharga column -->
+                    <th>Status</th>
+                    <th>Payment Method</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% bookings.forEach(booking => { %>
+                    <tr>
+                        <td><%= booking.name %></td>
+                        <td><%= moment(booking.date).format('YYYY-MM-DD') %></td>
+                        <td><%= booking.time %></td>
+                        <td><%= booking.duration %> hours</td>
+                        <td><%= booking.totalharga ? booking.totalharga.toLocaleString('id-ID') : '0' %></td>
+
+                        <td><%= booking.status %></td> 
+                        <td><%= booking.paymentMethod.charAt(0).toUpperCase() + booking.paymentMethod.slice(1) %></td>
+                        <td>
+                            <a class="btn btn-view btn-sm" href="/bookings/<%= booking.id %>">View</a>
+                            <% if (booking.userId === userId || userRole === 'admin') { %>
+                                <a class="btn btn-edit btn-sm" href="/bookings/edit/<%= booking.id %>">Edit</a>
+                                <button type="button" class="btn btn-delete btn-sm" data-toggle="modal" data-target="#confirmDeleteModal" data-id="<%= booking.id %>">Delete</button>
+                                <a class="btn btn-pay btn-sm" href="/payments/new?bookingId=<%= booking.id %>">Pay</a>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <div class="mt-3">
+            <a class="btn btn-new mt-3" href="/bookings/new">Add New Booking</a>
+            <div>
+                <!-- WhatsApp Button -->
+                <a class="btn btn-whatsapp mt-3 d-flex align-items-center justify-content-center"
+                   href="https://wa.me/+6282323786236" target="_blank">
+                    <img src="/assets/images/Whatsapp-logo-vetor.png" width="50" height="40" alt="WhatsApp Logo" class="mr-2">
+                    <span>Chat via WhatsApp</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Add custom CSS -->
+        <style>
+            .btn-whatsapp {
+                background-color: #25D366;
+                color: white;
+                border-radius: 5px;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 10px 20px;
+                display: inline-flex;
+                align-items: center;
+                transition: background-color 0.3s ease;
+            }
+        
+            .btn-whatsapp:hover {
+                background-color: #128C7E; /* Darker green when hovered */
+            }
+        
+            .btn-whatsapp img {
+                margin-right: 10px;
+            }
+        
+            .btn-whatsapp span {
+                font-weight: bold;
+            }
+        </style>
+        
+        
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container1">
+            <div class="footer-left">
+                <img src="/assets/images/logo.png" width="100" height="100" class="d-inline-block align-top mb-2" alt="Booking Futsal Logo">
+                <div class="social-media mt-3">
+                    <a href="https://www.facebook.com/bookingfutsal" class="text-white mr-3">
+                        <img src="/assets/images/icons/facebook.png" width="30" height="30" alt="Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/bookingfutsal" class="text-white mr-3">
+                        <img src="/assets/images/icons/instagram.png" width="30" height="30" alt="Instagram">
+                    </a>
+                    <a href="https://www.twitter.com/bookingfutsal" class="text-white">
+                        <img src="/assets/images/icons/twitter.png" width="30" height="30" alt="Twitter">
+                    </a>
+                </div>
+            </div>
+            <div class="footer-right">
+                <p>&copy; <%= new Date().getFullYear() %> Booking Futsal. All Rights Reserved.</p>
+                <p>Kontak Kami: <a href="mailto:info@bookingfutsal.com">info@bookingfutsal.com</a></p>
+                <p>Telepon: (123) 456-7890</p>
+                <p>Alamat: 123 Futsal Street, Jakarta, Indonesia</p>
+                <p>Jam Operasional: Senin - Jumat, 9:00 AM - 9:00 PM</p>
+                <div class="quick-links mt-3">
+                    <a href="/privacy" class="text-white mr-3">Kebijakan Privasi</a>
+                    <a href="/terms" class="text-white">Syarat Layanan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this booking?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <form id="deleteForm" action="" method="POST">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $('#confirmDeleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var bookingId = button.data('id'); // Extract info from data-* attributes
+            var action = '/bookings/' + bookingId + '/delete'; // Update form action
+            var modal = $(this);
+            modal.find('#deleteForm').attr('action', action);
+        });
+    </script>
+</body>
+</html>

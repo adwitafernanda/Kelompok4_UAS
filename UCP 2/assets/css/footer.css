@@ -1,0 +1,59 @@
+/* footer.css */
+
+.footer {
+    background-color: #343a40; /* Warna latar belakang gelap */
+    color: white; /* Warna teks putih */
+    padding: 20px 0; /* Padding untuk atas dan bawah */
+    text-align: center; /* Teks rata tengah */
+    width: 100%; /* Lebar penuh */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Tambahkan efek bayangan */
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Memisahkan konten ke kiri dan kanan */
+    align-items: center;
+}
+
+.footer-left, .footer-right {
+    flex: 1; /* Membuat kedua sisi sama besar */
+    padding: 10px;
+}
+
+.footer-left {
+    text-align: left; /* Teks rata kiri */
+}
+
+.footer-right {
+    text-align: right; /* Teks rata kanan */
+}
+
+.footer img {
+    margin-bottom: 10px; /* Margin bawah untuk logo */
+}
+
+.footer p, .footer a {
+    margin: 5px 0; /* Margin atas dan bawah untuk paragraf dan tautan */
+    font-size: 16px; /* Ukuran font */
+}
+
+.footer a {
+    color: #007bff; /* Warna link */
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline; /* Garis bawah saat hover */
+}
+
+.footer .social-media a {
+    margin-right: 15px; /* Margin kanan untuk ikon media sosial */
+    font-size: 18px; /* Ukuran font untuk ikon media sosial */
+}
+
+.footer .quick-links a {
+    margin-right: 15px; /* Margin kanan untuk tautan cepat */
+    font-size: 16px; /* Ukuran font untuk tautan cepat */
+}
+
